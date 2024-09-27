@@ -6,7 +6,7 @@ from flask_moment import Moment
 app = Flask(__name__)
 
 bootstrap = Bootstrap(app)
-moment = Moment(app)
+moment = Moment(app) # Initializes Moment with your Flask app.
 
 
 @app.route('/')
