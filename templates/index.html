@@ -7,10 +7,10 @@
 <div class="page-header">
     {% if email_error %}
     <h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}! Welcome to PRA2 Docker!</h1>
-    <h1>Please enter a UofT email address.</h1>
+    <h1>Please use your UofT email.</h1>
     {% elif name and email %}
     <h1>Hello, {{ name }}! Welcome to PRA2 Docker!</h1>
-    <h1>Your email address is {{ email }}.</h1>
+    <h1>Your UofT email is {{ email }}.</h1>
     {% else %}
     <h1>Hello, Stranger! Welcome to PRA2 Docker!</h1>
     {% endif %}

@@ -13,7 +13,7 @@ moment = Moment(app)
     
 class NameForm(FlaskForm):
     name = StringField('What is your name?', validators=[DataRequired()])
-    email = EmailField('What is your email address?', validators=[DataRequired(), Email(message="Please include an ‘@’ in the email address. '{email}' is missing an ‘@’.")])
+    email = EmailField('What is your UofT Email address?', validators=[DataRequired(), Email(message="Please include an ‘@’ in the email address. '{email}' is missing an ‘@’.")])
     submit = SubmitField('Submit')
 
 
