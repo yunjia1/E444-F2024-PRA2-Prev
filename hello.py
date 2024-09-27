@@ -31,7 +31,8 @@ def index():
         session['email'] = form.email.data
         if old_email is not None and old_email != form.email.data:
             flash('Looks like you have changed your email!')
-        if 'utoronto' not in form.email.data.lower():
+        # regex or check ends with 
+        if not session['email'].lower().endswith('utoronto.ca') and not session['email'].lower().endswith('utoronto.com'):
             return render_template('index.html', form=form, name=session.get('name'), email_error=True)
         return redirect(url_for('index')) # if successful, redirect back to index page (to display updated info)
     return render_template('index.html', form=form, name=session.get('name'), email_error=False, email=session.get('email'))
