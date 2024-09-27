@@ -3,9 +3,10 @@ from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, EmailField
-from wtforms.validators import DataRequired, ValidationError,Email
+from wtforms.validators import DataRequired,Email
 
 app = Flask(__name__)
+# for session management, flash messaging
 app.config['SECRET_KEY'] = 'hard to guess string'
 
 bootstrap = Bootstrap(app)
@@ -16,8 +17,9 @@ class NameForm(FlaskForm):
     email = EmailField('What is your UofT Email address?', validators=[DataRequired(), Email(message="Please include an ‘@’ in the email address. '{email}' is missing an ‘@’.")])
     submit = SubmitField('Submit')
 
-
-@app.route('/', methods=['GET', 'POST'])
+# Which HTTP methods (like GET, POST) are allowed 
+# GET - when user visits the page POST - data entered in form is sent to server
+@app.route('/', methods=['GET', 'POST']) 
 def index():
     form = NameForm()
     if form.validate_on_submit():
@@ -31,5 +33,5 @@ def index():
             flash('Looks like you have changed your email!')
         if 'utoronto' not in form.email.data.lower():
             return render_template('index.html', form=form, name=session.get('name'), email_error=True)
-        return redirect(url_for('index'))
+        return redirect(url_for('index')) # if successful, redirect back to index page (to display updated info)
     return render_template('index.html', form=form, name=session.get('name'), email_error=False, email=session.get('email'))
